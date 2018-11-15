@@ -14,6 +14,7 @@ namespace Mautic\EmailBundle\Model;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Mautic\ChannelBundle\Entity\MessageQueue;
 use Mautic\ChannelBundle\Model\MessageQueueModel;
+use Mautic\CoreBundle\Doctrine\Provider\GeneratedColumnsProviderInterface;
 use Mautic\CoreBundle\Helper\CacheStorageHelper;
 use Mautic\CoreBundle\Helper\Chart\BarChart;
 use Mautic\CoreBundle\Helper\Chart\ChartQuery;
@@ -137,21 +138,25 @@ class EmailModel extends FormModel implements AjaxLookupModelInterface
     private $cacheStorageHelper;
 
     /**
-     * EmailModel constructor.
-     *
-     * @param IpLookupHelper     $ipLookupHelper
-     * @param ThemeHelper        $themeHelper
-     * @param Mailbox            $mailboxHelper
-     * @param MailHelper         $mailHelper
-     * @param LeadModel          $leadModel
-     * @param CompanyModel       $companyModel
-     * @param TrackableModel     $pageTrackableModel
-     * @param UserModel          $userModel
-     * @param MessageQueueModel  $messageQueueModel
-     * @param SendEmailToContact $sendModel
-     * @param DeviceTracker      $deviceTracker
-     * @param RedirectRepository $redirectRepository
-     * @param CacheStorageHelper $cacheStorageHelper
+     * @var GeneratedColumnsProviderInterface
+     */
+    private $generatedColumnsProvider;
+
+    /**
+     * @param IpLookupHelper                    $ipLookupHelper
+     * @param ThemeHelper                       $themeHelper
+     * @param Mailbox                           $mailboxHelper
+     * @param MailHelper                        $mailHelper
+     * @param LeadModel                         $leadModel
+     * @param CompanyModel                      $companyModel
+     * @param TrackableModel                    $pageTrackableModel
+     * @param UserModel                         $userModel
+     * @param MessageQueueModel                 $messageQueueModel
+     * @param SendEmailToContact                $sendModel
+     * @param DeviceTracker                     $deviceTracker
+     * @param RedirectRepository                $redirectRepository
+     * @param CacheStorageHelper                $cacheStorageHelper
+     * @param GeneratedColumnsProviderInterface $generatedColumnsProvider
      */
     public function __construct(
         IpLookupHelper $ipLookupHelper,
@@ -166,21 +171,23 @@ class EmailModel extends FormModel implements AjaxLookupModelInterface
         SendEmailToContact $sendModel,
         DeviceTracker $deviceTracker,
         RedirectRepository $redirectRepository,
-        CacheStorageHelper $cacheStorageHelper
+        CacheStorageHelper $cacheStorageHelper,
+        GeneratedColumnsProviderInterface $generatedColumnsProvider
     ) {
-        $this->ipLookupHelper        = $ipLookupHelper;
-        $this->themeHelper           = $themeHelper;
-        $this->mailboxHelper         = $mailboxHelper;
-        $this->mailHelper            = $mailHelper;
-        $this->leadModel             = $leadModel;
-        $this->companyModel          = $companyModel;
-        $this->pageTrackableModel    = $pageTrackableModel;
-        $this->userModel             = $userModel;
-        $this->messageQueueModel     = $messageQueueModel;
-        $this->sendModel             = $sendModel;
-        $this->deviceTracker         = $deviceTracker;
-        $this->redirectRepository    = $redirectRepository;
-        $this->cacheStorageHelper    = $cacheStorageHelper;
+        $this->ipLookupHelper           = $ipLookupHelper;
+        $this->themeHelper              = $themeHelper;
+        $this->mailboxHelper            = $mailboxHelper;
+        $this->mailHelper               = $mailHelper;
+        $this->leadModel                = $leadModel;
+        $this->companyModel             = $companyModel;
+        $this->pageTrackableModel       = $pageTrackableModel;
+        $this->userModel                = $userModel;
+        $this->messageQueueModel        = $messageQueueModel;
+        $this->sendModel                = $sendModel;
+        $this->deviceTracker            = $deviceTracker;
+        $this->redirectRepository       = $redirectRepository;
+        $this->cacheStorageHelper       = $cacheStorageHelper;
+        $this->generatedColumnsProvider = $generatedColumnsProvider;
     }
 
     /**
@@ -1901,8 +1908,8 @@ class EmailModel extends FormModel implements AjaxLookupModelInterface
         }
 
         $chart = new LineChart($unit, $dateFrom, $dateTo, $dateFormat);
-        $query = new ChartQuery($this->em->getConnection(), $dateFrom, $dateTo);
-        $query->addGeneratedColumn('generated_sent_date', 'date_sent', 'd');
+        $query = new ChartQuery($this->em->getConnection(), $dateFrom, $dateTo, $unit);
+        $query->setGeneratedColumnProvider($this->generatedColumnsProvider);
 
         if ($flag == 'sent_and_opened_and_failed' || $flag == 'all' || $flag == 'sent_and_opened' || !$flag || in_array('sent', $datasets)) {
             $q = $query->prepareTimeDataQuery('email_stats', 'date_sent', $filter);
