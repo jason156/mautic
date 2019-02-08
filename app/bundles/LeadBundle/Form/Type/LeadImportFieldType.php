@@ -25,7 +25,7 @@ class LeadImportFieldType extends AbstractType
     /**
      * @var EntityManager
      */
-    private $enityManager;
+    private $entityManager;
 
     /**
      * @var TranslatorInterface
@@ -33,13 +33,13 @@ class LeadImportFieldType extends AbstractType
     private $translator;
 
     /**
-     * @param EntityManager       $enityManager
+     * @param EntityManager       $entityManager
      * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManager $enityManager, TranslatorInterface $translator)
+    public function __construct(EntityManager $entityManager, TranslatorInterface $translator)
     {
-        $this->enityManager = $enityManager;
-        $this->translator   = $translator;
+        $this->entityManager = $entityManager;
+        $this->translator    = $translator;
     }
 
     /**
@@ -64,7 +64,7 @@ class LeadImportFieldType extends AbstractType
         }
 
         $transformer = new IdToEntityModelTransformer(
-            $this->enityManager,
+            $this->entityManager,
             'MauticUserBundle:User'
         );
 
