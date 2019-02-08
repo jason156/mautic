@@ -471,6 +471,22 @@ return [
             'mautic.lead.button.subscriber' => [
                 'class' => \Mautic\LeadBundle\EventListener\ButtonSubscriber::class,
             ],
+            'mautic.lead.import.contact.subscriber' => [
+                'class'     => Mautic\LeadBundle\EventListener\ImportContactSubscriber::class,
+                'arguments' => [
+                    'mautic.lead.field.field_list',
+                    'mautic.security',
+                    'mautic.lead.model.lead',
+                ],
+            ],
+            'mautic.lead.import.company.subscriber' => [
+                'class'     => Mautic\LeadBundle\EventListener\ImportCompanySubscriber::class,
+                'arguments' => [
+                    'mautic.lead.field.field_list',
+                    'mautic.security',
+                    'mautic.lead.model.company',
+                ],
+            ],
             'mautic.lead.import.subscriber' => [
                 'class'     => Mautic\LeadBundle\EventListener\ImportSubscriber::class,
                 'arguments' => [
@@ -613,8 +629,8 @@ return [
                 'alias' => 'lead_import',
             ],
             'mautic.form.type.lead_field_import' => [
-                'class'     => 'Mautic\LeadBundle\Form\Type\LeadImportFieldType',
-                'arguments' => ['mautic.factory'],
+                'class'     => \Mautic\LeadBundle\Form\Type\LeadImportFieldType::class,
+                'arguments' => ['doctrine.orm.entity_manager', 'translator'],
                 'alias'     => 'lead_field_import',
             ],
             'mautic.form.type.lead_quickemail' => [
