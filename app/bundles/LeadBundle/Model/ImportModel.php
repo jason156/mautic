@@ -541,7 +541,7 @@ class ImportModel extends FormModel
         $eventLog = new LeadEventLog();
         $eventLog->setUserId($import->getCreatedBy())
             ->setUserName($import->getCreatedByUser())
-            ->setBundle('lead')
+            ->setBundle($import->getObject())
             ->setObject('import')
             ->setObjectId($import->getId())
             ->setProperties(
