@@ -399,7 +399,7 @@ abstract class AbstractPermissions
     /**
      * @param string $bundle
      * @param string $level
-     * 
+     *
      * @return string
      */
     protected function getLabel($bundle, $level)

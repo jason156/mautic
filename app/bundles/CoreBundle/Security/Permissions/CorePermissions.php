@@ -18,7 +18,6 @@ use Mautic\UserBundle\Entity\Permission;
 use Mautic\UserBundle\Entity\User;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
-use Mautic\CoreBundle\Security\Permissions\AbstractPermissions;
 
 class CorePermissions
 {
@@ -85,8 +84,7 @@ class CorePermissions
         array $parameters,
         array $bundles,
         array $pluginBundles
-    )
-    {
+    ) {
         $this->translator    = $translator;
         $this->params        = $parameters;
         $this->bundles       = $bundles;
@@ -99,7 +97,7 @@ class CorePermissions
      */
     public function setPermissionObject(AbstractPermissions $permissionObject)
     {
-        $className = '\\'.get_class($permissionObject);
+        $className                                                   = '\\'.get_class($permissionObject);
         $this->permissionObjectsByClass[$className]                  = $permissionObject;
         $this->permissionObjectsByName[$permissionObject->getName()] = $permissionObject;
     }
@@ -114,7 +112,8 @@ class CorePermissions
         foreach ($this->getPermissionClasses() as $class) {
             try {
                 $this->getPermissionObject($class);
-            } catch (\InvalidArgumentException $e) {}
+            } catch (\InvalidArgumentException $e) {
+            }
         }
 
         return $this->permissionObjectsByName;
@@ -516,14 +515,14 @@ class CorePermissions
 
     /**
      * @deprecated To be removed in 3.0.
-     * 
+     *
      * It is recommended to define permission objects via DI with tag 'mautic.permissions'.
      * This is fallback for keeping BC where the permission object is instantiated on the fly.
      *
      * @param string $class
-     * 
+     *
      * @return AbstractPermissions
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     private function instantiatePermissionObject($class)
@@ -538,13 +537,13 @@ class CorePermissions
         return $permissionObject;
     }
 
-     /**
+    /**
      * Search for the permission objects by name or by class name.
      *
      * @param string $bundle
-     * 
+     *
      * @return AbstractPermissions
-     * 
+     *
      * @throws \UnexpectedValueException
      */
     private function findPermissionObject($bundle)
