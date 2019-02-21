@@ -77,7 +77,7 @@ $buildBundles = function ($namespace, $bundle) use ($container, $paths, $root, &
         }
 
         // Build permission object lists
-        // @todo - convert to tagged services
+        // @deprecated use DI to define permission objects. To be removed in 3.0
         $permissionClasses = [];
         if (file_exists($directory.'/Security/Permissions')) {
             $finder = \Symfony\Component\Finder\Finder::create()->files('*Permissions.php')->in($directory.'/Security/Permissions');
@@ -90,10 +90,7 @@ $buildBundles = function ($namespace, $bundle) use ($container, $paths, $root, &
                     continue;
                 }
 
-                $permissionInstance = new $permissionClass([]);
-                $permissionName     = $permissionInstance->getName();
-
-                $permissionClasses[$permissionName] = $permissionClass;
+                $permissionClasses[$permissionClass] = $permissionClass;
             }
         }
 
