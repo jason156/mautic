@@ -84,7 +84,7 @@ $buildBundles = function ($namespace, $bundle) use ($container, $paths, $root, &
 
             foreach ($finder as $file) {
                 $className       = basename($file->getFilename(), '.php');
-                $permissionClass = '\\'.$baseNamespace.'\\Security\\Permissions\\'.$className;
+                $permissionClass = $baseNamespace.'\\Security\\Permissions\\'.$className;
                 // Skip CorePermissions and AbstractPermissions
                 if ('CoreBundle' === $bundleBase && in_array($className, ['CorePermissions', 'AbstractPermissions'])) {
                     continue;

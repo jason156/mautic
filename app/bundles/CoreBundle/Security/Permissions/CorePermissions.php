@@ -134,8 +134,6 @@ class CorePermissions
             throw new \InvalidArgumentException("Bundle and permission type must be specified. {$bundle} given.");
         }
 
-        $bundle = ltrim($bundle, '\\');
-
         try {
             $permissionObject = $this->findPermissionObject($bundle);
         } catch (\UnexpectedValueException $e) {
@@ -532,7 +530,7 @@ class CorePermissions
             throw new \InvalidArgumentException("Permission class not found for {$class} in permissions classes");
         }
 
-        $permissionClass  = $this->getPermissionClasses()[$class];
+        $permissionClass  = '\\'.$this->getPermissionClasses()[$class];
         $permissionObject = new $permissionClass($this->getParams());
 
         return $permissionObject;
