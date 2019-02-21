@@ -97,9 +97,8 @@ class CorePermissions
      */
     public function setPermissionObject(AbstractPermissions $permissionObject)
     {
-        $className                                                   = '\\'.get_class($permissionObject);
-        $this->permissionObjectsByClass[$className]                  = $permissionObject;
-        $this->permissionObjectsByName[$permissionObject->getName()] = $permissionObject;
+        $this->permissionObjectsByClass[get_class($permissionObject)] = $permissionObject;
+        $this->permissionObjectsByName[$permissionObject->getName()]  = $permissionObject;
     }
 
     /**
@@ -122,7 +121,7 @@ class CorePermissions
     /**
      * Returns the permission class object and sets it to global array.
      *
-     * @param string $bundle
+     * @param string $bundle can be either short bundle name or full path to the permissions class
      * @param bool   $throwException
      *
      * @return AbstractPermissions
@@ -134,6 +133,8 @@ class CorePermissions
         if (empty($bundle)) {
             throw new \InvalidArgumentException("Bundle and permission type must be specified. {$bundle} given.");
         }
+        
+        $bundle = ltrim($bundle, '\\');
 
         try {
             $permissionObject = $this->findPermissionObject($bundle);
