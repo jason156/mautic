@@ -25,6 +25,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class AjaxController.
@@ -247,6 +248,7 @@ class AjaxController extends CommonController
         $id             = InputHelper::int($request->request->get('id'));
         $customToggle   = InputHelper::clean($request->request->get('customToggle'));
         $model          = $this->getModel($name);
+        $status         = Response::HTTP_OK;
 
         $post = $request->request->all();
         unset($post['model'], $post['id'], $post['action']);
@@ -303,10 +305,15 @@ class AjaxController extends CommonController
                     );
                     $dataArray['statusHtml'] = $html;
                 }
+            } else {
+                $this->addFlash('mautic.core.error.access.denied');
+                $status = Response::HTTP_FORBIDDEN;
             }
         }
 
-        return $this->sendJsonResponse($dataArray);
+        $dataArray['flashes'] = $this->getFlashContent();
+
+        return $this->sendJsonResponse($dataArray, $status);
     }
 
     /**
