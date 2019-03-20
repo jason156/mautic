@@ -69,13 +69,11 @@ class SparkpostTransportTest extends \PHPUnit_Framework_TestCase
             'emailName'   => 'Campaign Test Email',
             'hashId'      => '5c92a91788e39848445285',
             'hashIdState' => true,
-            'source'      =>
-                [
+            'source'      => [
                     'email',
                     20,
                 ],
-            'tokens'      =>
-                [
+            'tokens'      => [
                     '{dynamiccontent="Dynamic Content 1"}' => 'Default Dynamic Content',
                     '{unsubscribe_text}'                   => '<a href="http://website/email/unsubscribe/5c92a91788e39848445285">Unsubscribe</a> to no longer receive emails from us.',
                     '{unsubscribe_url}'                    => 'http://website/email/unsubscribe/5c92a91788e39848445285',
@@ -85,8 +83,7 @@ class SparkpostTransportTest extends \PHPUnit_Framework_TestCase
                     '{subject}'                            => 'Campaign Test',
                     '{tracking_pixel}'                     => 'http://website/email/5c92a91788e39848445285.gif',
                 ],
-            'utmTags'     =>
-                [
+            'utmTags'     => [
                     'utmSource'   => null,
                     'utmMedium'   => null,
                     'utmCampaign' => 'Campaign Test',
@@ -117,13 +114,11 @@ class SparkpostTransportTest extends \PHPUnit_Framework_TestCase
             'emailName'   => 'Campaign Test Email',
             'hashId'      => '5c92a91788e39848445285',
             'hashIdState' => true,
-            'source'      =>
-                [
+            'source'      => [
                     'email',
                     20,
                 ],
-            'tokens'      =>
-                [
+            'tokens'      => [
                     '{dynamiccontent="Dynamic Content 1"}' => 'Default Dynamic Content',
                     '{unsubscribe_text}'                   => '<a href="http://website/email/unsubscribe/5c92a91788e39848445285">Unsubscribe</a> to no longer receive emails from us.',
                     '{unsubscribe_url}'                    => 'http://website/email/unsubscribe/5c92a91788e39848445285',
@@ -133,8 +128,7 @@ class SparkpostTransportTest extends \PHPUnit_Framework_TestCase
                     '{subject}'                            => 'Campaign Test',
                     '{tracking_pixel}'                     => 'http://website/email/5c92a91788e39848445285.gif',
                 ],
-            'utmTags'     =>
-                [
+            'utmTags'     => [
                     'utmSource'   => null,
                     'utmMedium'   => null,
                     'utmCampaign' => null,
