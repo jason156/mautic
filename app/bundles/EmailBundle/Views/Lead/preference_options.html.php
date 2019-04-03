@@ -56,7 +56,7 @@ JS;
                             <td>
                                 <div class="text-left">
                                     <input type="checkbox" id="<?php echo $channel->value ?>"
-                                           name="lead_contact_frequency_rules[subscribed_channels][]"
+                                           name="lead_contact_frequency_rules[lead_channels][subscribed_channels][]" class="control-label"
                                            onclick="togglePreferredChannel(this.value);"
                                            value="<?php echo $view->escape($channel->value) ?>" <?php echo $checked; ?>>
                                     <label for="<?php echo $channel->value ?>" id="is-contactable-<?php echo $channel->value ?>">
@@ -105,7 +105,7 @@ JS;
                     <div id="preferred_channel" class="text-left"><?php echo $view['form']->row($leadChannelsForm['preferred_channel']); ?></div>
                 <?php
                 else:
-                    unset($form['preferred_channel']);
+                    unset($form['lead_channels']['preferred_channel']);
                 endif; ?>
 
                 <?php if ($showContactSegments && count($form['lead_lists'])):?>
