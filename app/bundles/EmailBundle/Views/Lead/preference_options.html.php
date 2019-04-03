@@ -16,17 +16,18 @@ $leadChannelsForm = $form['lead_channels'];
 $js            = <<<'JS'
 function togglePreferredChannel(channel){
        var status = document.getElementById(channel).checked;
+       var formPrefix = 'lead_contact_frequency_rules_lead_channels_';
        if(status)
            {
-                document.getElementById('lead_contact_frequency_rules_frequency_number_' + channel).disabled = false;
-                document.getElementById('lead_contact_frequency_rules_frequency_time_' + channel).disabled = false;
-                document.getElementById('lead_contact_frequency_rules_contact_pause_start_date_' + channel).disabled = false;
-                document.getElementById('lead_contact_frequency_rules_contact_pause_end_date_' + channel).disabled = false;
+                document.getElementById(formPrefix + 'frequency_number_' + channel).disabled = false;
+                document.getElementById(formPrefix + 'frequency_time_' + channel).disabled = false;
+                document.getElementById(formPrefix + 'contact_pause_start_date_' + channel).disabled = false;
+                document.getElementById(formPrefix + 'contact_pause_end_date_' + channel).disabled = false;
             } else {
-                document.getElementById('lead_contact_frequency_rules_frequency_number_' + channel).disabled = true;
-                document.getElementById('lead_contact_frequency_rules_frequency_time_' + channel).disabled = true;
-                document.getElementById('lead_contact_frequency_rules_contact_pause_start_date_' + channel).disabled = true;
-                document.getElementById('lead_contact_frequency_rules_contact_pause_end_date_' + channel).disabled = true;
+                document.getElementById(formPrefix + 'frequency_number_' + channel).disabled = true;
+                document.getElementById(formPrefix + 'frequency_time_' + channel).disabled = true;
+                document.getElementById(formPrefix + 'contact_pause_start_date_' + channel).disabled = true;
+                document.getElementById(formPrefix + 'contact_pause_end_date_' + channel).disabled = true;
             }
         }
 JS;
@@ -56,7 +57,7 @@ JS;
                             <td>
                                 <div class="text-left">
                                     <input type="checkbox" id="<?php echo $channel->value ?>"
-                                           name="lead_contact_frequency_rules[lead_channels][subscribed_channels][]" class="control-label"
+                                           name="lead_contact_frequency_rules_lead_channels[lead_channels][subscribed_channels][]" class="control-label"
                                            onclick="togglePreferredChannel(this.value);"
                                            value="<?php echo $view->escape($channel->value) ?>" <?php echo $checked; ?>>
                                     <label for="<?php echo $channel->value ?>" id="is-contactable-<?php echo $channel->value ?>">
