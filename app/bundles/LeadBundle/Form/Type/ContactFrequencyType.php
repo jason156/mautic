@@ -44,16 +44,13 @@ class ContactFrequencyType extends AbstractType
     {
         $showContactCategories = $this->coreParametersHelper->getParameter('show_contact_categories');
         $showContactSegments   = $this->coreParametersHelper->getParameter('show_contact_segments');
-
-        // var_dump($options['data'], $options['channels']);die;
         if (!empty($options['channels'])) {
             $builder->add(
                 'lead_channels',
                 ContactChannelsType::class,
                 [
-                    'channels'    => $options['channels'],
-                    'data'        => $options['data']['lead_channels'],
-                    'public_view' => $options['public_view'],
+                    'channels' => $options['channels'],
+                    'data'     => $options['data']['lead_channels'],
                 ]
             );
         }
@@ -125,8 +122,8 @@ class ContactFrequencyType extends AbstractType
         $resolver->setRequired(['channels']);
         $resolver->setDefaults(
             [
-                'public_view'               => false,
-                'preference_center_only'    => false,
+                'public_view'            => false,
+                'preference_center_only' => false,
             ]
         );
     }
