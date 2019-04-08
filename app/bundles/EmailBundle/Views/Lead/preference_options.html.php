@@ -154,6 +154,6 @@ JS;
     </div>
 
     <?php
-    unset($form['lead_channels']['subscribed_channels']);
+    unset($form['lead_channels']);
     echo $view['form']->end($form); ?>
 </div>
