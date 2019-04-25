@@ -45,7 +45,7 @@ class SalesforceIntegration extends CrmAbstractIntegration
     ];
 
     /**
-     * @var bool 
+     * @var bool
      */
     private $failureFetchingLeads = false;
 
@@ -1381,7 +1381,7 @@ class SalesforceIntegration extends CrmAbstractIntegration
                     try {
                         $query = $fetcher->getQueryForUnknownObjects($fields, $object);
                         $this->getLeads([], $query, $executed, [], $object);
-                        
+
                         if ($this->failureFetchingLeads) {
                             // Something failed while fetching the leads (i.e API error limit) so we have to fail here to prevent the campaign
                             // from caching the timestamp that will cause contacts to not be pulled/added to the segment
