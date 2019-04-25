@@ -154,10 +154,10 @@ class IntegrationEntityRepository extends CommonRepository
     }
 
     /**
-     * @param      $integration
-     * @param      $integrationEntity
-     * @param      $internalEntity
-     * @param      $internalEntityIds
+     * @param   $integration
+     * @param   $integrationEntity
+     * @param   $internalEntity
+     * @param   $internalEntityIds
      *
      * @return IntegrationEntity[]
      */
