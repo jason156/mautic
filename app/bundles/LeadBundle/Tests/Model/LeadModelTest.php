@@ -12,6 +12,7 @@ use Mautic\CoreBundle\Helper\IpLookupHelper;
 use Mautic\CoreBundle\Helper\PathsHelper;
 use Mautic\CoreBundle\Helper\UserHelper;
 use Mautic\EmailBundle\Helper\EmailValidator;
+use Mautic\LeadBundle\DataObject\LeadManipulator;
 use Mautic\LeadBundle\Entity\CompanyLeadRepository;
 use Mautic\LeadBundle\Entity\Lead;
 use Mautic\LeadBundle\Entity\LeadEventLog;
@@ -30,7 +31,6 @@ use Mautic\UserBundle\Security\Provider\UserProvider;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Mautic\LeadBundle\DataObject\LeadManipulator;
 
 class LeadModelTest extends \PHPUnit_Framework_TestCase
 {
@@ -384,7 +384,7 @@ class LeadModelTest extends \PHPUnit_Framework_TestCase
 
         $contact->expects($this->once())
             ->method('addEventLog')
-            ->with($this->callback(function(LeadEventLog $leadEventLog) use ($contact) {
+            ->with($this->callback(function (LeadEventLog $leadEventLog) use ($contact) {
                 $this->assertSame($contact, $leadEventLog->getLead());
                 $this->assertSame('identified_contact', $leadEventLog->getAction());
                 $this->assertSame('lead', $leadEventLog->getBundle());
