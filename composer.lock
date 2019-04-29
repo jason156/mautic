@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76ca1f3e88950d50351be721720c3e0a",
+    "content-hash": "9fa5d845c9e8d748a721d298d0a654b8",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2731,7 +2731,7 @@
                     "homepage": "http://github.com/knplabs/Gaufrette/contributors"
                 },
                 {
-                    "name": "KnpLabs Team",
+                    "name": "KNPLabs Team",
                     "homepage": "http://knplabs.com"
                 }
             ],
@@ -2930,31 +2930,30 @@
         },
         {
             "name": "lightsaml/lightsaml",
-            "version": "1.3.3",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lightSAML/lightSAML.git",
-                "reference": "44447a7022b9165dfa46ec21d96f26f01813e5ea"
+                "reference": "377f04d1fb25f2fb2e72dabeff10b336f1cbe4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lightSAML/lightSAML/zipball/44447a7022b9165dfa46ec21d96f26f01813e5ea",
-                "reference": "44447a7022b9165dfa46ec21d96f26f01813e5ea",
+                "url": "https://api.github.com/repos/lightSAML/lightSAML/zipball/377f04d1fb25f2fb2e72dabeff10b336f1cbe4c5",
+                "reference": "377f04d1fb25f2fb2e72dabeff10b336f1cbe4c5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.1",
-                "robrichards/xmlseclibs": "~2.0|~3.0",
-                "symfony/event-dispatcher": "~2.3|~3.0",
-                "symfony/http-foundation": "~2.3|~3.0"
+                "php": ">=5.6",
+                "robrichards/xmlseclibs": "~2.0|~3.0|~4.0",
+                "symfony/event-dispatcher": "~2.3|~3.0|~4.0",
+                "symfony/http-foundation": "~2.3|~3.0|~4.0"
             },
             "require-dev": {
                 "monolog/monolog": "~1.3",
-                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit": ">=5.7",
                 "pimple/pimple": "~3.0",
-                "satooshi/php-coveralls": "~0.6",
-                "symfony/css-selector": "~2.3",
-                "symfony/dom-crawler": "~2.3"
+                "symfony/css-selector": "~2.3|~3.0|~4.0",
+                "symfony/dom-crawler": "~2.3|~3.0|~4.0"
             },
             "suggest": {
                 "lightsaml/sp-bundle": "Symfony 2 SP security bundle",
@@ -2989,33 +2988,33 @@
                 "lightSAML",
                 "php"
             ],
-            "time": "2017-12-18T06:32:51+00:00"
+            "time": "2018-05-28T11:21:22+00:00"
         },
         {
             "name": "lightsaml/sp-bundle",
-            "version": "1.0.5",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lightSAML/SpBundle.git",
-                "reference": "2cb00e7bbfdb68c6eb7117cf1a35756e9cbddbe7"
+                "reference": "b31182d23d93b696305f57f9a66d6770a53d5f8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lightSAML/SpBundle/zipball/2cb00e7bbfdb68c6eb7117cf1a35756e9cbddbe7",
-                "reference": "2cb00e7bbfdb68c6eb7117cf1a35756e9cbddbe7",
+                "url": "https://api.github.com/repos/lightSAML/SpBundle/zipball/b31182d23d93b696305f57f9a66d6770a53d5f8e",
+                "reference": "b31182d23d93b696305f57f9a66d6770a53d5f8e",
                 "shasum": ""
             },
             "require": {
-                "lightsaml/symfony-bridge": "~1.0",
-                "php": ">=5.5.1",
-                "symfony/framework-bundle": "~2.3|~3.0",
-                "symfony/security-bundle": "~2.3|~3.0"
+                "lightsaml/symfony-bridge": "~1.3",
+                "php": ">=5.6",
+                "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+                "symfony/security-bundle": "~2.7|~3.0|~4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.6",
-                "satooshi/php-coveralls": "~0.6",
-                "symfony/monolog-bundle": "~2.3|~3.0",
-                "symfony/symfony": "~2.3|~3.0"
+                "phpunit/phpunit": "^5.7",
+                "sebastian/comparator": "^1.2.4|~2.0|~3.0",
+                "symfony/monolog-bundle": "~2.7|~3.0|~4.0",
+                "symfony/symfony": "~2.7|~3.0|~4.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -3038,32 +3037,36 @@
             ],
             "description": "Light SAML2 SP Symfony Bundle",
             "homepage": "http://www.lightsaml.com/SP-Bundle/",
-            "time": "2017-01-31T07:57:43+00:00"
+            "time": "2018-05-23T09:11:16+00:00"
         },
         {
             "name": "lightsaml/symfony-bridge",
-            "version": "1.0.4",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lightSAML/SymfonyBridgeBundle.git",
-                "reference": "01ad843a0bafc5268bda65e49a9be3c0c57e2381"
+                "reference": "8d3120825032a7468e894d0ae68630f21cd6035b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lightSAML/SymfonyBridgeBundle/zipball/01ad843a0bafc5268bda65e49a9be3c0c57e2381",
-                "reference": "01ad843a0bafc5268bda65e49a9be3c0c57e2381",
+                "url": "https://api.github.com/repos/lightSAML/SymfonyBridgeBundle/zipball/8d3120825032a7468e894d0ae68630f21cd6035b",
+                "reference": "8d3120825032a7468e894d0ae68630f21cd6035b",
                 "shasum": ""
             },
             "require": {
                 "lightsaml/lightsaml": "~1.1",
                 "php": ">=5.5.1",
-                "symfony/dependency-injection": "~2.3|~3.0",
-                "symfony/framework-bundle": "~2.3|~3.0",
-                "symfony/yaml": "~2.3|~3.0"
+                "symfony/dependency-injection": "~2.7|~3.0|~4.0",
+                "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+                "symfony/yaml": "~2.7|~3.0|~4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.5",
-                "satooshi/php-coveralls": "~0.6"
+                "php-coveralls/php-coveralls": "~2.0",
+                "phpunit/phpunit": "^5.7",
+                "symfony/browser-kit": "~2.7|~3.0|~4.0",
+                "symfony/filesystem": "~2.7|~3.0|~4.0",
+                "symfony/finder": "~2.7|~3.0|~4.0",
+                "symfony/routing": "~2.7|~3.0|~4.0"
             },
             "suggest": {
                 "lightsaml/lightsamp-idp": "If you will be using IDP LightSAML services"
@@ -3089,7 +3092,7 @@
             ],
             "description": "Light SAML Symfony bridge bundle",
             "homepage": "http://www.lightsaml.com",
-            "time": "2016-11-18T15:11:05+00:00"
+            "time": "2018-05-23T08:11:59+00:00"
         },
         {
             "name": "maxmind-db/reader",
