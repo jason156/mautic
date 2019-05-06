@@ -393,7 +393,7 @@ class MailHelper
 
             if (!$isQueueFlush) {
                 // Replace token content
-                $tokens = $this->getTokens();
+                $tokens                = $this->getTokens();
                 $tokens['{signature}'] = $this->fromEmailHelper->getSignature();
 
                 // Set metadata if applicable
@@ -1346,7 +1346,6 @@ class MailHelper
                 $fromEmail = key($this->from);
             }
 
-            $this->setFrom($fromEmail, $fromName, null);
             $this->from = [$fromEmail => $fromName];
         } else {
             $this->from = $this->systemFrom;
@@ -2181,7 +2180,6 @@ class MailHelper
 
     private function getFromEmailForQueue()
     {
-
     }
 
     /**
@@ -2212,7 +2210,6 @@ class MailHelper
         return $owner ? $owner : false;
     }
 
-
     /**
      * @param $owner
      *
@@ -2228,5 +2225,4 @@ class MailHelper
 
         return $this->fromEmailHelper->getSignature($owner['id']);
     }
-
 }
