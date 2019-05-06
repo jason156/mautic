@@ -1201,7 +1201,7 @@ class Email extends FormEntity implements VariantEntityInterface, TranslationEnt
     /**
      * @param $field
      *
-     * @return Callback
+     * @return callback
      */
     private static function getTokenOrEmailConstraint($field)
     {
@@ -1229,7 +1229,7 @@ class Email extends FormEntity implements VariantEntityInterface, TranslationEnt
                         ->atPath($field)
                         ->addViolation();
                 }
-            }
+            },
         ]);
     }
 }

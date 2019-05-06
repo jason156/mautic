@@ -148,10 +148,10 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
                 ['override@nowhere.com' => null],
                 ['override@nowhere.com' => null],
                 ['override@nowhere.com' => null],
-                ['nobody@nowhere.com' => null],
-                ['nobody@nowhere.com' => null],
-                ['nobody@nowhere.com' => null],
-                ['nobody@nowhere.com' => null]
+                ['nobody@nowhere.com'   => null],
+                ['nobody@nowhere.com'   => null],
+                ['nobody@nowhere.com'   => null],
+                ['nobody@nowhere.com'   => null]
             );
 
         $transport   = new BatchTransport();
@@ -201,8 +201,7 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
         $transport   = new BatchTransport(true);
         $swiftMailer = new \Swift_Mailer($transport);
 
-
-        $from = ['nobody@nowhere.com' => 'No Body'];
+        $from   = ['nobody@nowhere.com' => 'No Body'];
         $mailer = new MailHelper($mockFactory, $swiftMailer, $from);
         $mailer->enableQueue();
         $this->fromEmailHelper->expects($this->exactly(2))
@@ -244,8 +243,8 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
             ->willReturnOnConsecutiveCalls(
                 ['owner1@owner.com' => 'owner 1'],
                 ['nobody@nowhere.com' => 'No Body'],
-                ['owner2@owner.com' => 'owner 2'],
-                ['owner1@owner.com' => 'owner 1']
+                ['owner2@owner.com'   => 'owner 2'],
+                ['owner1@owner.com'   => 'owner 1']
             );
         $this->fromEmailHelper
             ->method('getSignature')
@@ -311,7 +310,7 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
         $transport   = new BatchTransport();
         $swiftMailer = new \Swift_Mailer($transport);
 
-        $from = ['nobody@nowhere.com' => 'No Body&#39;s Business'];
+        $from   = ['nobody@nowhere.com' => 'No Body&#39;s Business'];
         $mailer = new MailHelper($mockFactory, $swiftMailer, $from);
         $mailer->enableQueue();
         $this->fromEmailHelper->expects($this->exactly(4))
@@ -319,8 +318,8 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
             ->willReturnOnConsecutiveCalls(
                 ['owner1@owner.com' => null],
                 ['nobody@nowhere.com' => "No Body's Business"],
-                ['owner2@owner.com' => null],
-                ['owner3@owner.com' => "John S'mith"]
+                ['owner2@owner.com'   => null],
+                ['owner3@owner.com'   => "John S'mith"]
             );
 
         $mailer->setSubject('Hello');
@@ -358,7 +357,7 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
             ->willReturnOnConsecutiveCalls(
                 ['owner1@owner.com' => null],
                 ['nobody@nowhere.com' => null],
-                ['owner2@owner.com' => null],
+                ['owner2@owner.com'   => null],
                 ['nobody@nowhere.com' => null]
             );
 
@@ -428,8 +427,8 @@ class MailHelperTest extends \PHPUnit_Framework_TestCase
             ->willReturnOnConsecutiveCalls(
                 ['owner1@owner.com' => 'owner 1'],
                 ['nobody@nowhere.com' => 'No Body'],
-                ['owner2@owner.com' => 'owner 2'],
-                ['owner1@owner.com' => 'owner 1']
+                ['owner2@owner.com'   => 'owner 2'],
+                ['owner1@owner.com'   => 'owner 1']
             );
         $this->fromEmailHelper
             ->method('getSignature')
