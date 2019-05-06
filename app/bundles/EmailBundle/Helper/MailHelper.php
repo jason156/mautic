@@ -19,6 +19,7 @@ use Mautic\EmailBundle\EmailEvents;
 use Mautic\EmailBundle\Entity\Email;
 use Mautic\EmailBundle\Entity\Stat;
 use Mautic\EmailBundle\Event\EmailSendEvent;
+use Mautic\EmailBundle\Helper\Exception\OwnerNotFoundException;
 use Mautic\EmailBundle\Swiftmailer\Exception\BatchQueueMaxException;
 use Mautic\EmailBundle\Swiftmailer\Message\MauticMessage;
 use Mautic\EmailBundle\Swiftmailer\Transport\TokenTransportInterface;
@@ -2201,9 +2202,11 @@ class MailHelper
             return false;
         }
 
-        $owner = $this->fromEmailHelper->getContactOwner($contact['owner_id']);
-
-        return $owner ? $owner : false;
+        try {
+            return $this->fromEmailHelper->getContactOwner($contact['owner_id']);
+        } catch (OwnerNotFoundException $exception) {
+            return false;
+        }
     }
 
     /**
@@ -2219,6 +2222,12 @@ class MailHelper
             return '';
         }
 
-        return $this->fromEmailHelper->getSignature($owner['id']);
+        try {
+            $this->fromEmailHelper->getContactOwner($owner['id']);
+        } catch (OwnerNotFoundException $exception) {
+            return '';
+        }
+
+        return $this->fromEmailHelper->getSignature();
     }
 }
