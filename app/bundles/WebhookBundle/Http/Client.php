@@ -37,12 +37,13 @@ class Client
      *
      * @return Response
      */
-    public function post(string $url, array $payload, int $timeout = null): Response
+    public function post($url, array $payload, $timeout = null)
     {
         // Set up custom headers
         $headers = [
             'Content-Type'      => 'application/json',
             'X-Origin-Base-URL' => $this->coreParametersHelper->getParameter('site_url'),
+            'Cookie'            => 'XDEBUG_SESSION=XDEBUG_ECLIPSE',
         ];
 
         $http = new Http();
