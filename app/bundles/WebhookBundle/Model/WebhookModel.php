@@ -317,7 +317,10 @@ class WebhookModel extends FormModel
         }
 
         // Set up custom headers
-        $headers = ['Content-Type' => 'application/json'];
+        $headers = [
+            'Content-Type'      => 'application/json',
+            'X-Origin-Base-URL' => $this->coreParametersHelper->getParameter('site_url'),
+        ];
         $start   = microtime(true);
 
         try {

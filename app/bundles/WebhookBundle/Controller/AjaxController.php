@@ -46,7 +46,10 @@ class AjaxController extends CommonAjaxController
         $payloads['timestamp'] = $now->format('c');
 
         // Set up custom headers
-        $headers = ['Content-Type' => 'application/json'];
+        $headers = [
+            'Content-Type'      => 'application/json',
+            'X-Origin-Base-URL' => $this->coreParametersHelper->getParameter('site_url'),
+        ];
 
         // instantiate new http class
         $http = new Http();
