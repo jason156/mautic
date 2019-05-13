@@ -29,6 +29,7 @@ use Mautic\WebhookBundle\Entity\WebhookQueue;
 use Mautic\WebhookBundle\Entity\WebhookQueueRepository;
 use Mautic\WebhookBundle\Event as Events;
 use Mautic\WebhookBundle\Event\WebhookEvent;
+use Mautic\WebhookBundle\Http\Client;
 use Mautic\WebhookBundle\WebhookEvents;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
@@ -113,20 +114,26 @@ class WebhookModel extends FormModel
     protected $eventsOrderByDir;
 
     /**
-     * WebhookModel constructor.
-     *
+     * @var Client
+     */
+    private $httpClient;
+
+    /**
      * @param CoreParametersHelper $coreParametersHelper
      * @param Serializer           $serializer
      * @param NotificationModel    $notificationModel
+     * @param Client               $httpClient
      */
     public function __construct(
         CoreParametersHelper $coreParametersHelper,
         Serializer $serializer,
-        NotificationModel $notificationModel
+        NotificationModel $notificationModel,
+        Client $httpClient
     ) {
         $this->setConfigProps($coreParametersHelper);
         $this->serializer        = $serializer;
         $this->notificationModel = $notificationModel;
+        $this->httpClient        = $httpClient;
     }
 
     /**
@@ -301,9 +308,6 @@ class WebhookModel extends FormModel
      */
     public function processWebhook(Webhook $webhook, WebhookQueue $queue = null)
     {
-        // instantiate new http class
-        $http = new Http();
-
         // get the webhook payload
         $payload = $this->getWebhookPayload($webhook, $queue);
 
@@ -312,19 +316,10 @@ class WebhookModel extends FormModel
             return false;
         }
 
-        if (is_array($payload)) {
-            $payload = json_encode($payload);
-        }
-
-        // Set up custom headers
-        $headers = [
-            'Content-Type'      => 'application/json',
-            'X-Origin-Base-URL' => $this->coreParametersHelper->getParameter('site_url'),
-        ];
-        $start   = microtime(true);
+        $start = microtime(true);
 
         try {
-            $response = $http->post($webhook->getWebhookUrl(), $payload, $headers, $this->webhookTimeout);
+            $response = $this->httpClient->post($webhook->getWebhookUrl(), $payload, $this->webhookTimeout);
 
             // remove successfully processed queues from the Webhook object so they won't get stored again
             foreach ($this->webhookQueueIdList as $id => $queue) {

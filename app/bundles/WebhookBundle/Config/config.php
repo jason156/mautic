@@ -98,6 +98,7 @@ return [
                     'mautic.helper.core_parameters',
                     'jms_serializer',
                     'mautic.core.model.notification',
+                    'mautic.webhook.http.client',
                 ],
             ],
         ],
@@ -106,6 +107,12 @@ return [
                 'class'     => \Mautic\WebhookBundle\Helper\CampaignHelper::class,
                 'arguments' => [
                     'mautic.http.connector',
+                ],
+            ],
+            'mautic.webhook.http.client' => [
+                'class'     => \Mautic\WebhookBundle\Http\Client::class,
+                'arguments' => [
+                    'mautic.helper.core_parameters',
                 ],
             ],
         ],
