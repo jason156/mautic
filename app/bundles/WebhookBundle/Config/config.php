@@ -112,6 +112,7 @@ return [
             'mautic.webhook.http.client' => [
                 'class'     => \Mautic\WebhookBundle\Http\Client::class,
                 'arguments' => [
+                    'mautic.guzzle.client',
                     'mautic.helper.core_parameters',
                 ],
             ],
