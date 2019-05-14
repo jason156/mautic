@@ -13,6 +13,7 @@ namespace Mautic\WebhookBundle\Controller;
 
 use Mautic\CoreBundle\Controller\AjaxController as CommonAjaxController;
 use Mautic\CoreBundle\Helper\InputHelper;
+use Mautic\WebhookBundle\Http\Client;
 use Symfony\Component\HttpFoundation\Request;
 
 class AjaxController extends CommonAjaxController
@@ -45,6 +46,7 @@ class AjaxController extends CommonAjaxController
         $payloads['timestamp'] = $now->format('c');
 
         // set the response
+        /** @var Client $response */
         $response = $this->get('mautic.webhook.http.client')->post($url, $payloads);
 
         // default to an error message
