@@ -51,7 +51,6 @@ class Client
         $headers = [
             'Content-Type'      => 'application/json',
             'X-Origin-Base-URL' => $this->coreParametersHelper->getParameter('site_url'),
-            'Cookie'            => 'XDEBUG_SESSION=XDEBUG_ECLIPSE',
         ];
 
         $request = new Request(
