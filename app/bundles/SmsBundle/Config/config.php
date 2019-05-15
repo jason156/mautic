@@ -56,6 +56,12 @@ return [
                     'mautic.sms.repository.stat',
                 ],
             ],
+            'mautic.sms.webhook.subscriber' => [
+                'class'     => \Mautic\SmsBundle\EventListener\WebhookSubscriber::class,
+                'arguments' => [
+                    'mautic.webhook.model.webhook',
+                ],
+            ],
         ],
         'forms' => [
             'mautic.form.type.sms' => [
