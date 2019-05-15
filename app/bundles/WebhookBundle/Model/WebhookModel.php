@@ -328,7 +328,7 @@ class WebhookModel extends FormModel
 
             $responseBody = $response->getBody()->getContents();
             if (!$responseBody) {
-                $responseBody = '[]'; // Empty response body mark for log
+                $responseBody = '<<< Empty response body received >>>'; // Empty response body mark for log
             }
 
             $responseStatusCode = $response->getStatusCode();
