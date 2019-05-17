@@ -47,7 +47,6 @@ class CampaignHelper
      */
     public function fireWebhook(array $config, Lead $contact)
     {
-        // dump($config);die;
         $payload = $this->getPayload($config, $contact);
         $headers = $this->getHeaders($config, $contact);
         $this->makeRequest($config['url'], $config['method'], $config['timeout'], $headers, $payload);
