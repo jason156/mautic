@@ -91,7 +91,7 @@ class EmailReply
      * EmailReply constructor.
      *
      * @param Stat           $stat
-     * @param                $messageId
+     * @param string         $messageId
      * @param \DateTime|null $dateReplied
      */
     public function __construct(Stat $stat, $messageId, \DateTime $dateReplied = null)
