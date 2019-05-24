@@ -46,6 +46,11 @@ return [
                 'controller' => 'MauticEmailBundle:Api\EmailApi:sendLead',
                 'method'     => 'POST',
             ],
+            'mautic_api_reply' => [
+                'path'       => '/emails/reply/{trackingHash}',
+                'controller' => 'MauticEmailBundle:Api\EmailApi:reply',
+                'method'     => 'POST',
+            ],
 
             // @deprecated 2.6.0 to be removed in 3.0
             'bc_mautic_api_sendcontactemail' => [
