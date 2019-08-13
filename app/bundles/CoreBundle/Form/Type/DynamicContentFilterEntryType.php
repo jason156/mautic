@@ -25,17 +25,17 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class DynamicContentFilterEntryType extends AbstractType
 {
-    private $fieldChoices    = [];
-    private $countryChoices  = [];
-    private $regionChoices   = [];
+    private $fieldChoices = [];
+    private $countryChoices = [];
+    private $regionChoices = [];
     private $timezoneChoices = [];
-    private $stageChoices    = [];
-    private $localeChoices   = [];
+    private $stageChoices = [];
+    private $localeChoices = [];
 
     /**
      * DynamicContentFilterEntryType constructor.
      *
-     * @param ListModel  $listModel
+     * @param ListModel $listModel
      * @param StageModel $stageModel
      */
     public function __construct(ListModel $listModel, StageModel $stageModel)
@@ -44,10 +44,10 @@ class DynamicContentFilterEntryType extends AbstractType
 
         $this->filterFieldChoices();
 
-        $this->countryChoices  = FormFieldHelper::getCountryChoices();
-        $this->regionChoices   = FormFieldHelper::getRegionChoices();
+        $this->countryChoices = FormFieldHelper::getCountryChoices();
+        $this->regionChoices = FormFieldHelper::getRegionChoices();
         $this->timezoneChoices = FormFieldHelper::getTimezonesChoices();
-        $this->localeChoices   = FormFieldHelper::getLocaleChoices();
+        $this->localeChoices = FormFieldHelper::getLocaleChoices();
 
         $stages = $stageModel->getRepository()->getSimpleList();
 
@@ -58,7 +58,7 @@ class DynamicContentFilterEntryType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -67,7 +67,7 @@ class DynamicContentFilterEntryType extends AbstractType
             'textarea',
             [
                 'label' => 'mautic.core.dynamicContent.alt_content',
-                'attr'  => [
+                'attr' => [
                     'class' => 'form-control editor editor-dynamic-content',
                 ],
             ]
@@ -78,24 +78,24 @@ class DynamicContentFilterEntryType extends AbstractType
                 'filters',
                 'collection',
                 [
-                    'type'    => 'dynamic_content_filter_entry_filters',
+                    'type' => 'dynamic_content_filter_entry_filters',
                     'options' => [
                         'label' => false,
-                        'attr'  => [
+                        'attr' => [
                             'class' => 'form-control',
                         ],
                         'countries' => $this->countryChoices,
-                        'regions'   => $this->regionChoices,
+                        'regions' => $this->regionChoices,
                         'timezones' => $this->timezoneChoices,
-                        'stages'    => $this->stageChoices,
-                        'locales'   => $this->localeChoices,
-                        'fields'    => $this->fieldChoices,
+                        'stages' => $this->stageChoices,
+                        'locales' => $this->localeChoices,
+                        'fields' => $this->fieldChoices,
                     ],
                     'error_bubbling' => false,
-                    'mapped'         => true,
-                    'allow_add'      => true,
-                    'allow_delete'   => true,
-                    'label'          => false,
+                    'mapped' => true,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'label' => false,
                 ]
             )
         );
@@ -116,7 +116,7 @@ class DynamicContentFilterEntryType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'label'          => false,
+                'label' => false,
                 'error_bubbling' => false,
             ]
         );
