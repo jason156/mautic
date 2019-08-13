@@ -67,7 +67,7 @@ class DynamicContentFilterEntryType extends AbstractType
             'textarea',
             [
                 'label' => 'mautic.core.dynamicContent.alt_content',
-                'attr' => [
+                'attr'  => [
                     'class' => 'form-control editor editor-dynamic-content',
                 ],
             ]
@@ -78,24 +78,24 @@ class DynamicContentFilterEntryType extends AbstractType
                 'filters',
                 'collection',
                 [
-                    'type' => 'dynamic_content_filter_entry_filters',
-                    'options' => [
-                        'label' => false,
-                        'attr' => [
+                    'type'           => 'dynamic_content_filter_entry_filters',
+                    'options'        => [
+                        'label'     => false,
+                        'attr'      => [
                             'class' => 'form-control',
                         ],
                         'countries' => $this->countryChoices,
-                        'regions' => $this->regionChoices,
+                        'regions'   => $this->regionChoices,
                         'timezones' => $this->timezoneChoices,
-                        'stages' => $this->stageChoices,
-                        'locales' => $this->localeChoices,
-                        'fields' => $this->fieldChoices,
+                        'stages'    => $this->stageChoices,
+                        'locales'   => $this->localeChoices,
+                        'fields'    => $this->fieldChoices,
                     ],
                     'error_bubbling' => false,
-                    'mapped' => true,
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'label' => false,
+                    'mapped'         => true,
+                    'allow_add'      => true,
+                    'allow_delete'   => true,
+                    'label'          => false,
                 ]
             )
         );
@@ -116,7 +116,7 @@ class DynamicContentFilterEntryType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'label' => false,
+                'label'          => false,
                 'error_bubbling' => false,
             ]
         );
