@@ -25,12 +25,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class DynamicContentFilterEntryType extends AbstractType
 {
-    private $fieldChoices = [];
-    private $countryChoices = [];
-    private $regionChoices = [];
+    private $fieldChoices    = [];
+    private $countryChoices  = [];
+    private $regionChoices   = [];
     private $timezoneChoices = [];
-    private $stageChoices = [];
-    private $localeChoices = [];
+    private $stageChoices    = [];
+    private $localeChoices   = [];
 
     /**
      * DynamicContentFilterEntryType constructor.
@@ -44,10 +44,10 @@ class DynamicContentFilterEntryType extends AbstractType
 
         $this->filterFieldChoices();
 
-        $this->countryChoices = FormFieldHelper::getCountryChoices();
-        $this->regionChoices = FormFieldHelper::getRegionChoices();
+        $this->countryChoices  = FormFieldHelper::getCountryChoices();
+        $this->regionChoices   = FormFieldHelper::getRegionChoices();
         $this->timezoneChoices = FormFieldHelper::getTimezonesChoices();
-        $this->localeChoices = FormFieldHelper::getLocaleChoices();
+        $this->localeChoices   = FormFieldHelper::getLocaleChoices();
 
         $stages = $stageModel->getRepository()->getSimpleList();
 
