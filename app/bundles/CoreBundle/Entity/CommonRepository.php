@@ -13,6 +13,7 @@ namespace Mautic\CoreBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ExpressionBuilder;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\Expression\CompositeExpression;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
@@ -1629,13 +1630,21 @@ class CommonRepository extends EntityRepository
                             break;
                         case 'in':
                         case 'notIn':
-                            if (!$isOrm) {
-                                $whereClause = $query->expr()->{$clause['expr']}($column, (array) $clause['val']);
-                            } else {
-                                $param       = $this->generateRandomParameterName();
+
+                            $parsed = str_getcsv(html_entity_decode($clause['val']), ',', '"');
+
+                            $param = $this->generateRandomParameterName();
+                            $arg   = count($parsed) > 1 ? $parsed : array_shift($parsed);
+
+                            if (is_array($arg)) {
                                 $whereClause = $query->expr()->{$clause['expr']}($column, ':'.$param);
-                                $query->setParameter($param, $clause['val']);
+                                $query->setParameter($param, $arg, Connection::PARAM_STR_ARRAY);
+                            } else {
+                                $expression  = $clause['expr'] === 'in' ? 'eq' : 'neq';
+                                $whereClause = $query->expr()->{$expression}($column, ':'.$param);
+                                $query->setParameter($param, $arg);
                             }
+                            break;
                         default:
                             if (method_exists($query->expr(), $clause['expr'])) {
                                 if (in_array($clause['expr'], $columnValue)) {
